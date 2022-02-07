@@ -4,7 +4,7 @@
 
 ## Live Demo
 
-[Link to Live demo]()
+[Link to Live demo](https://ridwanediallo.github.io/Awesome-books/)
 
 Additional description about the project and its features.
 -Can add book and author
