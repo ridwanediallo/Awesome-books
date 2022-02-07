@@ -47,13 +47,14 @@ function renderList() {
 }
 
 const removeList = (el) => {
-   bookCollection.splice(el, 1);
-   renderList();
-}
+	bookCollection.splice(el, 1);
+	setLocalStorage();
+	renderList();
+};
 
 books.addEventListener('click', (e) => {
-	if(e.target.classList.contains('remove-btn')) {
+	if (e.target.classList.contains('remove-btn')) {
 		let removeBtn = +e.target.dataset.id;
 		removeList(removeBtn);
 	}
-} )
+});
