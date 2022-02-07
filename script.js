@@ -2,6 +2,7 @@ const books = document.querySelector('.books');
 const addBtn = document.querySelector('.add-btn');
 const inputAuthor = document.querySelector('.author');
 const inputTitle = document.querySelector('.title');
+const removeBtn = document.querySelector('.remove-btn');
 
 let bookCollection = [];
 
@@ -44,3 +45,15 @@ function renderList() {
 		books.insertAdjacentHTML('afterbegin', html);
 	});
 }
+
+const removeList = (el) => {
+   bookCollection.splice(el, 1);
+   renderList();
+}
+
+books.addEventListener('click', (e) => {
+	if(e.target.classList.contains('remove-btn')) {
+		let removeBtn = +e.target.dataset.id;
+		removeList(removeBtn);
+	}
+} )
