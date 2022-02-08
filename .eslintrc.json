@@ -14,6 +14,9 @@
 		"no-shadow": "off",
 		"no-param-reassign": "off",
 		"eol-last": "off",
+		"max-classes-per-file": "off",
+		"no-tabs": 0,
+		"no-mixed-spaces-and-tabs": 0,
 		"import/extensions": [
 			1,
 			{
@@ -21,6 +24,10 @@
 				"json": "always"
 			}
 		]
+
+
 	},
 	"ignorePatterns": ["dist/", "build/"]
+
+
 }
