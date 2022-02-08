@@ -4,38 +4,42 @@ const inputAuthor = document.querySelector('.author');
 const inputTitle = document.querySelector('.title');
 
 class Book {
-	constructor(title, author) {
-		this.title = title;
-		this.author = author;
-	}
+  constructor(title, author) {
+    this.title = title;
+    this.author = author;
+  }
 }
 
 class Library {
-	#bookCollection = [];
+	bookCollection = [];
+
 	constructor() {
-		addBtn.addEventListener('click', this._addBook.bind(this));
-		books.addEventListener('click', this._clickToremove.bind(this));
-		this._getLocalStorage();
+	  addBtn.addEventListener('click', this.addBook.bind(this));
+	  books.addEventListener('click', this.clickToremove.bind(this));
+	  this.getLocalStorage();
 	}
-	_setLocalStorage() {
-		localStorage.setItem(
-			'bookCollection',
-			JSON.stringify(this.#bookCollection)
-		);
+
+	setLocalStorage() {
+	  localStorage.setItem(
+	    'bookCollection',
+	    JSON.stringify(this.bookCollection),
+	  );
 	}
-	_getLocalStorage = function () {
-		localStorage.getItem('bookCollection')
-			? (this.#bookCollection = JSON.parse(
-					localStorage.getItem('bookCollection')
-			  ))
-			: [];
-		this._renderList();
+
+	getLocalStorage = function () {
+	  /* eslint-disable */
+		localStorage.getItem('bookCollection') ?
+			(this.bookCollection = JSON.parse(
+				localStorage.getItem('bookCollection')
+			)) : [];
+		/* eslint-enable */
+	  this.renderList();
 	};
 
-	_renderList() {
-		books.innerHTML = '';
-		this.#bookCollection.forEach((el, i) => {
-			/* eslint-disable */
+	renderList() {
+	  books.innerHTML = '';
+	  this.bookCollection.forEach((el, i) => {
+	    /* eslint-disable */
 			const html = `
 			<div class="each-book">
 		  		<span class="book-title">${el.title}</span>
@@ -43,33 +47,37 @@ class Library {
 		  		<button class="remove-btn" data-id=${i}>Remove</button>
 	  		</div>`;
 			/* eslint-enable */
-			books.insertAdjacentHTML('afterbegin', html);
-		});
+	    books.insertAdjacentHTML('afterbegin', html);
+	  });
 	}
-	_addBook() {
-		const title = inputTitle.value;
-		const author = inputAuthor.value;
-		if (author && title) {
-			const book = new Book(title, author);
-			this.#bookCollection.push(book);
-			this._setLocalStorage(this.#bookCollection);
-			this._renderList();
-		}
-		inputTitle.value = '';
-		inputAuthor.value = '';
+
+	addBook() {
+	  const title = inputTitle.value;
+	  const author = inputAuthor.value;
+	  if (author && title) {
+	    const book = new Book(title, author);
+	    this.bookCollection.push(book);
+	    this.setLocalStorage(this.bookCollection);
+	    this.renderList();
+	  }
+	  inputTitle.value = '';
+	  inputAuthor.value = '';
 	}
-	_removeList = (el) => {
-		this.#bookCollection.splice(el, 1);
-		this._setLocalStorage();
-		this._renderList();
+
+	removeList = (el) => {
+	  this.bookCollection.splice(el, 1);
+	  this.setLocalStorage();
+	  this.renderList();
 	};
 
-	_clickToremove(e) {
-		if (e.target.classList.contains('remove-btn')) {
-			const removeBtn = +e.target.dataset.id;
-			this._removeList(removeBtn);
-		}
+	clickToremove(e) {
+	  if (e.target.classList.contains('remove-btn')) {
+	    const removeBtn = +e.target.dataset.id;
+	    this.removeList(removeBtn);
+	  }
 	}
 }
 
+/* eslint-disable */
 const library = new Library();
+/* eslint-enable */
