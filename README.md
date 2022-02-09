@@ -7,8 +7,8 @@
 [Link to Live demo](https://ridwanediallo.github.io/Awesome-books/)
 
 Additional description about the project and its features.
--Can add book and author
--Can remove particular book and author
+- Can add book and author
+- Can remove particular book and author
 
 # Getting Started
 
